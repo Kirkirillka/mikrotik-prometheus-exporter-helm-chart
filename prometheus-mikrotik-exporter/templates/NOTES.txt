@@ -1,0 +1,1 @@
+See https://github.com/nshttpd/mikrotik-exporter for how to configure Prometheus and the Mikrotik Exporter.

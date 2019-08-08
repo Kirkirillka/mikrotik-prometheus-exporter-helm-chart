@@ -1,0 +1,14 @@
+{{- if .Values.config }}
+apiVersion: v1
+kind: {{ if .Values.secretConfig -}} Secret {{- else -}} ConfigMap {{- end }}
+metadata:
+  name: {{ template "prometheus-mikrotik-exporter.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "prometheus-mikrotik-exporter.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "prometheus-mikrotik-exporter.chart" . }}
+{{ if .Values.secretConfig -}} stringData: {{- else -}} data: {{- end }}
+  mikrotik.yaml: |
+{{ toYaml .Values.config | indent 4 }}
+{{- end }}
