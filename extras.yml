@@ -1,0 +1,22 @@
+serviceMonitor:
+  enabled: true
+
+  selector:
+    app: kube-prometheus-stack
+    release:  monitoring
+
+config:
+  devices:
+  - name: gateway
+    address: 192.168.56.101
+    user: prometheus
+    password: changeme
+
+  features:
+    bgp: true
+    dhcp: true
+    dhcpv6: true
+    dhcpl: true
+    routes: true
+    pools: true
+    optics: true
